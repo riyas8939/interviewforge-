@@ -1,0 +1,156 @@
+{
+  "Google": {
+    "Technical": [
+      {
+        "question_text": "Explain how Google Search uses PageRank to index and score pages. How does the random surfer model handle sink nodes (pages with no outgoing links)?",
+        "question_type": "Short Answer",
+        "difficulty": "Hard",
+        "options": [],
+        "correct_answer": "PageRank simulates a random surfer. Sinks are resolved by distributing their rank equally to all other nodes in the graph (teleportation parameter alpha, usually 0.85)."
+      },
+      {
+        "question_text": "Describe the MapReduce architecture. How does it handle machine failures during intermediate sorting and shuffling stages?",
+        "question_type": "System Design",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "MapReduce uses a master node to monitor workers. If a map worker fails, its completed and in-progress tasks are re-run on another worker because its output is on local disk. If a reduce worker fails, only in-progress tasks are re-run on a new worker."
+      }
+    ],
+    "Coding": [
+      {
+        "question_text": "Write a function in your selected language that finds the longest path in a directed acyclic graph (DAG). Return the path length and the nodes sequence.",
+        "question_type": "Coding",
+        "difficulty": "Hard",
+        "options": [],
+        "correct_answer": "Use topological sorting. Initialize distances to negative infinity, set start node distance to 0, then relax edges in topological order."
+      },
+      {
+        "question_text": "Given a binary tree, write a function to find the maximum path sum. The path may start and end at any node in the tree.",
+        "question_type": "Coding",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "Compute max path sum recursively. For each node, calculate the max branch sum of left and right subtrees. Update global max with left + right + node.val."
+      }
+    ]
+  },
+  "Meta": {
+    "Technical": [
+      {
+        "question_text": "Explain how Memcached is used at Meta to scale read traffic. How does Meta handle cache consistency during database writes?",
+        "question_type": "System Design",
+        "difficulty": "Hard",
+        "options": [],
+        "correct_answer": "Meta uses mcrouter to orchestrate Memcached. Consistency is maintained by using a 'lease' mechanism to prevent thundering herds and sending invalidation daemons (mcsqueal) to tail database commit logs."
+      }
+    ],
+    "Coding": [
+      {
+        "question_text": "Write a function to merge k sorted linked lists and return it as one sorted list. Analyze its time and space complexity.",
+        "question_type": "Coding",
+        "difficulty": "Hard",
+        "options": [],
+        "correct_answer": "Use a Min-Heap (priority queue) of size k. Push the head of each list. Pop min, append to result list, and push next node from that list. Time complexity is O(N log k)."
+      }
+    ]
+  },
+  "Microsoft": {
+    "Technical": [
+      {
+        "question_text": "What is the CAP Theorem? If a network partition occurs in a distributed database system, explain the design trade-off between choosing Consistency (C) versus Availability (A).",
+        "question_type": "System Design",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "Under network partition, choosing Consistency requires rejecting writes/reads (losing availability). Choosing Availability allows nodes to serve stale data (losing consistency)."
+      }
+    ],
+    "Coding": [
+      {
+        "question_text": "Write a function that checks if a given binary tree is a valid Binary Search Tree (BST).",
+        "question_type": "Coding",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "Recursively validate that each node falls within an acceptable min and max range. Left child node must be less than current, right child must be greater."
+      }
+    ]
+  },
+  "Amazon": {
+    "Technical": [
+      {
+        "question_text": "Design a highly available notification service that can dispatch millions of emails and SMS alerts daily. How do you handle idempotency to avoid sending duplicate alerts?",
+        "question_type": "System Design",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "Use message queues (SQS), distributed workers, and deduplication keys stored in a fast cache (Redis) with TTL to verify if a unique transaction ID was processed."
+      }
+    ],
+    "Coding": [
+      {
+        "question_text": "Given an array of intervals where intervals[i] = [start_i, end_i], merge all overlapping intervals.",
+        "question_type": "Coding",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "Sort intervals by start time. Iterate through, if the current interval starts after the previous ends, append it. Otherwise, merge them by updating end time."
+      }
+    ]
+  },
+  "Netflix": {
+    "Technical": [
+      {
+        "question_text": "How does Netflix optimize video streaming delivery worldwide? Describe the role of CDN (Open Connect) and how adaptive bitrate streaming works.",
+        "question_type": "System Design",
+        "difficulty": "Hard",
+        "options": [],
+        "correct_answer": "Netflix deploys Open Connect appliance boxes directly inside ISP data centers. Videos are pre-encoded into different quality chunks. The player adaptively requests higher/lower bitrates depending on network speed."
+      }
+    ],
+    "Coding": [
+      {
+        "question_text": "Design an LRU (Least Recently Used) Cache that supports get and put operations in O(1) time complexity.",
+        "question_type": "Coding",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "Use a combination of a Doubly Linked List (to track access order in O(1)) and a Hash Map (for O(1) lookups of list nodes)."
+      }
+    ]
+  },
+  "OpenAI": {
+    "Technical": [
+      {
+        "question_text": "Explain the difference between model parameter size, training token count, and inference compute constraints. Why is KV (Key-Value) caching critical during transformer autoregressive generation?",
+        "question_type": "Short Answer",
+        "difficulty": "Hard",
+        "options": [],
+        "correct_answer": "Autoregressive generation computes attention for previous tokens repeatedly. KV caching stores Key-Value matrices of previous tokens in GPU memory, avoiding redundant matrix multiplications."
+      }
+    ],
+    "Coding": [
+      {
+        "question_text": "Write a function to perform tokenization using Basic Byte Pair Encoding (BPE) merge rules given a string vocabulary and frequency mapping.",
+        "question_type": "Coding",
+        "difficulty": "Hard",
+        "options": [],
+        "correct_answer": "Find the most frequent byte pair in the byte sequences, merge them, replace occurrences in vocabulary with the new token, and repeat."
+      }
+    ]
+  },
+  "Startup": {
+    "Technical": [
+      {
+        "question_text": "Explain how database index indexing works (B-Trees vs. Hash indexes) and describe when you would choose one over another in a high-growth startup environment.",
+        "question_type": "Short Answer",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "B-Trees support range queries and sorting operations. Hash indexes are faster (O(1)) but only support exact matches. In general web apps, B-Tree is preferred."
+      }
+    ],
+    "Coding": [
+      {
+        "question_text": "Write a function that takes an array of integers and returns the length of the longest consecutive elements sequence. The algorithm should run in O(n) time complexity.",
+        "question_type": "Coding",
+        "difficulty": "Medium",
+        "options": [],
+        "correct_answer": "Store elements in a hash set. Iterate through, checking if element-1 is in the set. If not, start counting consecutive values from that element."
+      }
+    ]
+  }
+}
